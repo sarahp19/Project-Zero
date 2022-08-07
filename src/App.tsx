@@ -16,11 +16,9 @@ function App() {
                 <a href="https://vitejs.dev" target="_blank">
                     <img src="/vite.svg" className="logo" alt="Vite logo" />
                 </a>
+				<h2>PixShare</h2>
                 <div>{user ? <Home /> : <SignIn />}</div>
             </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
         </div>
     );
 }

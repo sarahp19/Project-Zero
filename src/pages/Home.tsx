@@ -1,9 +1,16 @@
 import React from 'react';
+import { auth } from '../components/app'
+import SignOut from '../components/SignOut';
+import NavBar from "../components/NavBar"
+import UserFeed from "../components/UserFeed"
+import SideBar from "../components/SideBar"
 
 function Home() {
     return (
         <div>
-            <h1>Hello, Welcome To Home</h1>
+            <NavBar />
+            <UserFeed />
+            <SideBar />
         </div>
     );
 }
