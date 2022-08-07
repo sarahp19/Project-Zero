@@ -1,16 +1,19 @@
 import React from 'react';
-import { auth } from '../components/app'
+import { auth } from '../components/app';
 import SignOut from '../components/SignOut';
-import NavBar from "../components/NavBar"
-import UserFeed from "../components/UserFeed"
-import SideBar from "../components/SideBar"
+import NavBar from '../components/NavBar';
+import UserFeed from '../components/UserFeed';
+import SideBar from '../components/SideBar';
+import '../css/Home.css';
 
 function Home() {
     return (
-        <div>
+        <div className="Home">
             <NavBar />
-            <UserFeed />
-            <SideBar />
+            <section className="Feed-Section">
+                <UserFeed />
+                <SideBar />
+            </section>
         </div>
     );
 }
