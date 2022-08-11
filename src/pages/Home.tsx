@@ -10,11 +10,11 @@ function Home() {
         <div className="Home h-full bg-slate-700 w-full grid place-items-center">
             <NavBar />
             <br />
-            <section className="Feed-Section flex">
-                <div className="">
+            <section className="Feed-Section self-center justify-center flex w-full">
+                <div className="ml-1/4 w-8/10">
                     <UserFeed />
                 </div>
-                <div className="ml-8">
+                <div className="ml-12">
                     <SideBar />
                 </div>
             </section>

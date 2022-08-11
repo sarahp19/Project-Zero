@@ -8,6 +8,7 @@ function UserFeed() {
     return (
         <div>
             <PostCard />
+            <PostCard />
         </div>
     );
 }
