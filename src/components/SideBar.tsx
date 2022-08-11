@@ -1,16 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import usePromise from 'react-promise';
 import { auth, db } from '../components/app';
 import UserCard from './UserCard';
 import { doc, collection, getDoc, setDoc } from 'firebase/firestore';
 
-const user = auth.currentUser;
-const uid = user.uid
-// const user = 'ASfEeK6s3UMfD4o0F9kHHyc8TS33';
-console.log(auth);
-const docRef = doc(db, 'Users', uid);
+const user = 'ASfEeK6s3UMfD4o0F9kHHyc8TS33';
+console.log(auth)
+const uid = auth.currentUser?.uid;
+let docRef = doc(db, 'Users', user)
 const docSnap = await getDoc(docRef);
-console.log(user);
+
 
 function SideBar() {
     if (docSnap.exists()) {
