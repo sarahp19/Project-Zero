@@ -1,18 +1,22 @@
 import React from 'react';
 
-function UserCard(props:any) {
+function UserCard(props: any) {
     return (
-        <div className=" h-20 w-auto p-sm text-gray-900">
-            <div className="flex m-10">
+        <div className="flex items-center space-x-4 mt-10">
+            <div className="flex-shrink-0">
                 <img
-                    className="h-20 w-20 mr-4 rounded-full"
+                    className="w-10 h-10 rounded-full"
                     src={props.Profile}
+                    alt="Neil image"
                 />
-                <div>
-                    <h3 className="text-3xl text-gray-900">{props.UserName}</h3>
-
-                    <p className="text-s text-gray-700">{props.FirstName}</p>
-                </div>
+            </div>
+            <div className="flex-1 w-max">
+                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    @{props.UserName}
+                </p>
+                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {props.FirstName}
+                </p>
             </div>
         </div>
     );

@@ -23,7 +23,7 @@ function SideBar() {
         <div>
             <UserCard
                 Profile={docSnap.data()?.profile}
-                FirstName={docSnap.data()?.name.split(' ')[0]}
+                FirstName={docSnap.data()?.name}
                 UserName={docSnap.data()?.username}
             />
         </div>
