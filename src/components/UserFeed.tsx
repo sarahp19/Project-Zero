@@ -1,11 +1,13 @@
 import React from 'react';
 import { auth } from './app';
+import PostCard from './PostCard';
+import usePromise from "react-promise"
 
 function UserFeed() {
-
+    
     return (
         <div>
-            <h3>Testing UserFeed  |</h3>
+            {/* <PostCard /> */}
         </div>
     );
 }

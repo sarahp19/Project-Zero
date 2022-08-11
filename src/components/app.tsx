@@ -2,6 +2,7 @@ import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup , GoogleAuthProvider } from "firebase/auth";
 import { getDatabase } from "firebase/database"
+import { Firestore, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyCg9BsOyh5FioJ1H1TAJA4cQ6MnmFhexcY",
@@ -17,4 +18,4 @@ export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-export const firestore = getDatabase(app);
+export const db = getFirestore(app);

@@ -1,4 +1,13 @@
-.Feed-Section{
-    display: flex;
-    flex-direction: row;
+.Home{
+    text-align: center;
+
+}
+.Feed-Section {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.Post {
+    grid-column: 2;
+    /* background-color: aliceblue; */
 }

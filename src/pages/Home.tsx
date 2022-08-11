@@ -11,7 +11,8 @@ function Home() {
         <div className="Home">
             <NavBar />
             <section className="Feed-Section">
-                <UserFeed />
+                {/* <UserFeed /> */}
+                <p className='Post'> Muneeb </p>
                 <SideBar />
             </section>
         </div>
