@@ -10,7 +10,7 @@ function App() {
     const [user] = useAuthState(auth);
 
     return (
-        <div className="App">
+        <div className="App font-Poppins">
             <div>
                 <div>{user ? <Home /> : <SignIn />}</div>
             </div>

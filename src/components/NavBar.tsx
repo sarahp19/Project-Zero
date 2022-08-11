@@ -7,11 +7,10 @@ import SideBar from '../components/SideBar';
 
 function NavBar() {
     return (
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 w-11/12 rounded dark:bg-gray-900 mt-2">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
                 <a href="https://flowbite.com/" className="flex items-center">
                     <img
-                        // src="https://flowbite.com/docs/images/logo.svg"
                         src='https://www.citypng.com/public/uploads/preview/-51609193615decnmgwyz7.png'
                         className="mr-3 h-6 sm:h-9"
                         alt="Flowbite Logo"
@@ -61,7 +60,7 @@ function NavBar() {
                                 href="#"
                                 className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             >
-                                About
+                                Chat
                             </a>
                         </li>
                         <li>
@@ -69,7 +68,7 @@ function NavBar() {
                                 href="#"
                                 className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             >
-                                Services
+                                Post
                             </a>
                         </li>
                         <li>
@@ -77,7 +76,7 @@ function NavBar() {
                                 href="#"
                                 className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             >
-                                Pricing
+                                Settings
                             </a>
                         </li>
                         <li>

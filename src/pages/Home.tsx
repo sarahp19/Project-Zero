@@ -7,17 +7,21 @@ import Footer from '../components/Footer';
 
 function Home() {
     return (
-        <div className="Home h-screen bg-slate-600">
+        <div className="Home h-full bg-slate-700 w-full grid place-items-center">
             <NavBar />
-            <section className="Feed-Section grid grid-cols-10 gap-4 bg-slate-700">
-                <div className="bg-slate-700 col-start-3 col-span-4">
+            <br />
+            <section className="Feed-Section flex">
+                <div className="">
                     <UserFeed />
                 </div>
-                <div className='col-span-2 col-start-7'>
+                <div className="ml-8">
                     <SideBar />
                 </div>
             </section>
-            <Footer />
+            <br />
+            <div className='w-full'>
+                <Footer />
+            </div>
         </div>
     );
 }
