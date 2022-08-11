@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import './App.css';
+import './index.css';
 import { auth } from './components/app';
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';

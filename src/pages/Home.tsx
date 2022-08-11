@@ -1,18 +1,18 @@
 import React from 'react';
 import { auth } from '../components/app';
-import SignOut from '../components/SignOut';
 import NavBar from '../components/NavBar';
 import UserFeed from '../components/UserFeed';
 import SideBar from '../components/SideBar';
-import '../css/Home.css';
 
 function Home() {
     return (
-        <div className="Home">
+        <div className="Home bg-slate-400">
             <NavBar />
-            <section className="Feed-Section">
+            <section className="Feed-Section grid grid-cols-6 h-screen gap-4 bg-slate-300">
                 {/* <UserFeed /> */}
-                <p className='Post'> Muneeb </p>
+                <div className='bg-slate-200 col-start-2 col-span-3'>
+                    <p className="Post"> Muneeb </p>
+                </div>
                 <SideBar />
             </section>
         </div>
