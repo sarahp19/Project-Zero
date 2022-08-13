@@ -5,14 +5,13 @@ import UserCard from './UserCard';
 import { doc, collection, getDoc, setDoc } from 'firebase/firestore';
 
 const user = 'ASfEeK6s3UMfD4o0F9kHHyc8TS33';
-console.log(auth);
 const uid = auth.currentUser?.uid;
 let docRef = doc(db, 'Users', user);
 const docSnap = await getDoc(docRef);
 
 function SideBar() {
     if (docSnap.exists()) {
-        console.log('Document data:', docSnap.data());
+        console.log("data exists");
     } else {
         // doc.data() will be undefined in this case
         console.log('No such document!');

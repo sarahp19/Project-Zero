@@ -1,19 +1,20 @@
 import React from 'react';
+import getPosts from '../functions/getPosts';
 
 function Post(props: any) {
     return (
-        <div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700">
             <div className="pr-8 pl-8 pt-4">
-                <div className="flex self-center justify-right items-center mb-4 bg-slate-700 rounded-xl p-2">
+                <div className="flex self-center justify-right items-center mb-2 bg-gray-900 rounded-xl pr-4 ">
                     <div className="flex-shrink-0 flex items-center">
                         <img
                             className="w-12 h-12 rounded-full"
-                            src="https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg"
+                            src="https://i.pinimg.com/originals/6d/05/56/6d055640fae0d53ace7aa8fe575a27d3.jpg"
                             alt="Neil image"
                         />
-                    <h3 className="font-bold tracking-tight text-gray-800 dark:text-white text-xl m-4">
-                        @Test
-                    </h3>
+                        <h3 className="font-bold tracking-tight text-gray-800 dark:text-white text-xl m-4">
+                            @zero
+                        </h3>
                     </div>
                     <button className="inline-flex items-center m-4 justify-center w-10 h-10 float-right ml-auto mr-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
                         <svg
@@ -30,17 +31,16 @@ function Post(props: any) {
                 </div>
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        Noteworthy technology acquisitions 2021
+                        {props.post.caption}
                     </h5>
                 </a>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Here are the biggest enterprise technology acquisitions of
-                    2021 so far, in reverse chronological order.
+                    by @{props.post.UserID}
                 </p>
                 <div className="grid grid-cols-5 p-2">
                     <img
                         className="rounded w-80 col-span-3 col-start-2 shadow-xl mb-3"
-                        src="https://i.redd.it/z6w5wadono081.png"
+                        src={props.post.content}
                         alt=""
                     />
                 </div>
@@ -55,7 +55,7 @@ function Post(props: any) {
                             fill-rule="evenodd"
                         ></path>
                     </svg>
-                    <span>Like</span>
+                    <span>Like: {props.post.Likes}</span>
                 </button>
             </div>
         </div>
