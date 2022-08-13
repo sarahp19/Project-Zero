@@ -56,7 +56,7 @@ function PostCard() {
     return (
         <div>
             {Temp.map((elem) => (
-                <Posts post={elem[1]} key={elem[0]} />
+                <Posts post={elem[1]} key={elem[0]} PostID={elem[0]}/>
             ))}
         </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import changeLikes from '../functions/changeLikes';
 import getPosts from '../functions/getPosts';
 
 function Post(props: any) {
@@ -44,7 +45,12 @@ function Post(props: any) {
                         alt=""
                     />
                 </div>
-                <button className="inline-flex mb-4 items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
+                <button
+                    onClick={(e) => {
+                        return changeLikes(props.PostID, props.post.Likes, e);
+                    }}
+                    className="inline-flex mb-4 items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+                >
                     <svg
                         className="w-4 h-4 mr-3 fill-current"
                         viewBox="0 0 20 20"
