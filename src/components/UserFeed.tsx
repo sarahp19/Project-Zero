@@ -6,8 +6,9 @@ import usePromise from "react-promise"
 function UserFeed() {
     
     return (
-        <div>
+        <div className='p-4'>
             <PostCard />
+            <br />
             <PostCard />
         </div>
     );

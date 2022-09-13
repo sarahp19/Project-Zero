@@ -1,18 +1,35 @@
 import React from 'react';
-import { doc, setDoc, updateDoc } from 'firebase/firestore';
-import { db } from '../components/app';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../components/app';
 import { increment } from 'firebase/database';
 
-function changeLikes(PostID: string , like:number, e:any) {
+function changeLikes(PostInfo: any, PostID: any, e: any) {
+    const user = auth.currentUser?.uid;
     const Post = doc(db, 'Posts', PostID);
-    const temp = async () => {
-        await updateDoc(Post, {
-            Likes: like + 1
-        });
-    };
-    console.log(e.target)
-    temp();
-    e.target.innerHTML = `Likes: ${like + 1}`; 
+
+    if (!PostInfo.likedUsers.includes(user)) {
+        const like = async () => {
+            await updateDoc(Post, {
+                Likes: PostInfo.Likes + 1,
+                likedUsers: [...PostInfo.likedUsers, user]
+            });
+        };
+        like();
+        e.target.innerHTML = `Likes: ${PostInfo.Likes + 1}`;
+    } else {
+        const dislike = async () => {
+            await updateDoc(Post, {
+                Likes: PostInfo.Likes - 1,
+                likedUsers: [
+                    ...PostInfo.likedUsers.filter((item: any) => {
+                        return item != user;
+                    })
+                ]
+            });
+        };
+        dislike();
+        e.target.innerHTML = `Like  : ${PostInfo.Likes - 1}`;
+    }
 }
 
 export default changeLikes;

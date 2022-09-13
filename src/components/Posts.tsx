@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import changeLikes from '../functions/changeLikes';
 import getPosts from '../functions/getPosts';
-
+import { auth } from './app';
 function Post(props: any) {
+    
+    const user = auth.currentUser?.uid;
+
     return (
         <div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700">
             <div className="pr-8 pl-8 pt-4">
@@ -47,7 +50,7 @@ function Post(props: any) {
                 </div>
                 <button
                     onClick={(e) => {
-                        return changeLikes(props.PostID, props.post.Likes, e);
+                        return changeLikes(props.post, props.PostID, e);
                     }}
                     className="inline-flex mb-4 items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
                 >
@@ -61,7 +64,7 @@ function Post(props: any) {
                             fill-rule="evenodd"
                         ></path>
                     </svg>
-                    <span>Like: {props.post.Likes}</span>
+                    <span>{props.post.likedUsers.includes(user) ? `Liked: ${props.post.Likes}` : `Like: ${props.post.Likes}`}</span>
                 </button>
             </div>
         </div>

@@ -53,6 +53,7 @@ function PostCard() {
             getPosts('C.C');
         }
     };
+
     return (
         <div>
             {Temp.map((elem) => (

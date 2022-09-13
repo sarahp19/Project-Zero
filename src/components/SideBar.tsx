@@ -18,7 +18,7 @@ function SideBar() {
     }
 
     return (
-        <div className="">
+        <div className="hidden md:block">
             <div>
                 <UserCard
                     Profile={docSnap.data()?.profile}
@@ -27,7 +27,7 @@ function SideBar() {
                 />
             </div>
             <br />
-            <div>
+            <div >
                 <UserCard
                     Profile="https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg"
                     FirstName="lmao"
