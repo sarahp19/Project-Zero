@@ -13,7 +13,7 @@ function Post(props: any) {
                     <div className="flex-shrink-0 flex items-center">
                         <img
                             className="w-12 h-12 rounded-full"
-                            src="https://i.pinimg.com/originals/6d/05/56/6d055640fae0d53ace7aa8fe575a27d3.jpg"
+                            src="https://www.trendytarzen.com/wp-content/uploads/2021/07/2-1.jpg"
                             alt="Neil image"
                         />
                         <h3 className="font-bold tracking-tight text-gray-800 dark:text-white text-xl m-4">
