@@ -1,0 +1,1 @@
+This is a React, Typescript Image sharing application which allows user authentication, Real time chat system, Image sharing and much more. 
