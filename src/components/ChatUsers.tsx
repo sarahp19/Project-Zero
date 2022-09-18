@@ -93,6 +93,7 @@
 
 import { query } from 'firebase/database';
 import {
+    addDoc,
     collection,
     doc,
     limit,
@@ -123,7 +124,7 @@ function ChatRoom(props: any) {
     const [formValue, setFormValue] = useState('');
     const messageRef = collection(db, 'Chats', 'AnimeChats', 'messages');
 
-    console.log(messageRef);
+    // console.log(messageRef);
     const q = query(messageRef, orderBy('createdAt', 'desc'), limit(3));
 
     const [messages, loading, error] = useCollectionData(q, { idField: 'id' });
@@ -133,7 +134,7 @@ function ChatRoom(props: any) {
 
         const uid = auth.currentUser?.uid;
 
-        await setDoc(doc(db, 'Chats', 'AnimeChats', 'messages', 'asdawv'), {
+        await addDoc(messageRef, {
             text: formValue,
             createdAt: serverTimestamp(),
             uid
