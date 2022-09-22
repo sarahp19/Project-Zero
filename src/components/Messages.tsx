@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { auth } from './app';
 import ChatUsers from './ChatUsers';
 
-export default function Messages() {
+export default function Messages(props: any) {
     const [ActiveTab, setActiveTab] = useState('');
+    // console.log(auth.currentUser);
 
     return (
         <div className="w-[100%] h-screen bg-slate-800">
@@ -13,50 +15,50 @@ export default function Messages() {
                             <Button
                                 IsActive={ActiveTab}
                                 setActiveTab={setActiveTab}
-                                Name="Anime"
+                                Name="AnimeChats"
                             />
                         </li>
                         <li className="mr-2">
                             <Button
                                 IsActive={ActiveTab}
                                 setActiveTab={setActiveTab}
-                                Name="Coding"
+                                Name="CodingChats"
                             />
                         </li>
                         <li className="mr-2">
                             <Button
                                 IsActive={ActiveTab}
                                 setActiveTab={setActiveTab}
-                                Name="Gaming"
+                                Name="GamingChats"
                             />
                         </li>
                         <li className="mr-2">
                             <Button
                                 IsActive={ActiveTab}
                                 setActiveTab={setActiveTab}
-                                Name="Video Editing"
+                                Name="VideoEditingChats"
                             />
                         </li>
                         <li className="mr-2">
                             <Button
                                 IsActive={ActiveTab}
                                 setActiveTab={setActiveTab}
-                                Name="Sports"
+                                Name="SportsChats"
                             />
                         </li>
                     </ul>
                 </div>
-                <img
-                    src="https://www.trendytarzen.com/wp-content/uploads/2021/07/2-1.jpg"
-                    className="h-12 m-4 rounded-full"
-                />
+                <img src={props.profile} className="h-12 m-4 rounded-full" />
                 <h1 className="text-white">@Muneeb</h1>
             </div>
             <div className="bg-slate-400 h-[90%]">
                 {ActiveTab == '' ? (
                     <h1>Select something</h1>
                 ) : (
-                    <ChatUsers active={ActiveTab} />
+                    <div className="bg-slate-400 h-full overflow-hidden">
+                        {/* <h1>{ActiveTab}</h1> */}
+                        <ChatUsers CurrentActive={ActiveTab} profile={props.profile} />
+                    </div>
                 )}
             </div>
         </div>
@@ -64,6 +66,7 @@ export default function Messages() {
 }
 
 function Button(props: any) {
+    // props.setActiveTab;
     return props.IsActive == props.Name ? (
         <button
             onClick={() => props.setActiveTab(props.Name)}
@@ -74,7 +77,10 @@ function Button(props: any) {
         </button>
     ) : (
         <button
-            onClick={() => props.setActiveTab(props.Name)}
+            onClick={() => {
+                console.log(props.Name);
+                props.setActiveTab(props.Name);
+            }}
             className="inline-block py-3 px-4 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white"
         >
             {props.Name}
