@@ -64,7 +64,7 @@ function Upload() {
 
     return (
         <div className="bg-slate-700 font-Poppins w-full h-screen flex flex-col mt-0 items-center">
-            <NavBar />
+            <NavBar highlight="Upload"/>
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col self-center h-full justify-center"

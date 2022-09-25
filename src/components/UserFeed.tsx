@@ -9,7 +9,6 @@ function UserFeed() {
         <div className='p-4'>
             <PostCard />
             <br />
-            <PostCard />
         </div>
     );
 }

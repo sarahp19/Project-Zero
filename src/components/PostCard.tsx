@@ -1,66 +1,109 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import {} from 'firebase/firestore';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { db, app } from './app';
-import usePromise from 'react-promise';
-import Posts from './Posts';
-import { doc, getDoc, orderBy, getDocs, collection, startAfter, query, QuerySnapshot, limit, where
+import React, { useState, useEffect, useRef } from 'react';
+import {
+    collection,
+    query,
+    orderBy,
+    startAfter,
+    startAt,
+    limit,
+    getDocs
 } from 'firebase/firestore';
-import getPosts from '../functions/getPosts';
+import { db } from './app';
+import Posts from './Posts';
 
-function PostCard() {
-	const referencePost = useRef()
-    const [Temp, setTemp] = useState([]);
-    const [LatestPost, setLatestPost] = useState(`sr7SBthujhjNyr4U6QMO`);
+export default function PostCard() {
+    const [Post, setPost] = useState<any | string>([]);
+    const [Loading, setLoading] = useState(false);
+    const [LatestPost, setLatestPost] = useState<any | null>('');
+    const [FirstCoat, setFirstCoat] = useState(true);
+    // const [Temp, setTemp] = useState({});
+    const [OffSet, setOffSet] = useState(0);
+    const Temp = useRef(false);
+
+    // Query the first page of docs
 
     useEffect(() => {
-        // isMounted.current = true;
+        if (FirstCoat) {
+            const firstPosts = async () => {
+                const first = query(
+                    collection(db, 'Posts'),
+                    orderBy('createdAt', 'desc'),
+                    limit(3)
+                );
 
-        const getPosts = async (user: any) => {
-
-            let Posts: any = [];
-
-            const postsRef = collection(db, 'Posts');
-
-            const q = query(postsRef, where('UserID', '==', user), limit(1));
-            const querySnapshot = await getDocs(q);
-
-            const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-            const next = query(
-                postsRef,
-                where('UserID', '==', user),
-                startAfter(lastVisible),
-                limit(1)
-            );
-
-            const LatestPosts = await getDocs(next);
-
-            LatestPosts.forEach((doc) => {
-                Posts.push([doc.id, doc.data()]);
-                setLatestPost(doc.id);
-            });
-
-            console.log(Posts);
-            setTemp(Posts);
+                const documentSnapshots = await getDocs(first);
+                documentSnapshots.docs.forEach((element) => {
+                    setPost((prev: []) => [
+                        ...prev,
+                        JSON.stringify(element.data())
+                    ]);
+                });
+                setLatestPost(documentSnapshots.docs[2]);
+            };
+            firstPosts();
+        }
+        return () => {
+            setPost([]);
         };
+    }, [FirstCoat]);
 
-        getPosts('C.C');
+    // setFirstCoat(true);
+
+    useEffect(() => {
+        if (Temp.current) {
+            // alert(LatestPost);
+            console.log('New posts coming right up!');
+            const fetchPosts = async () => {
+                setLoading(true);
+                const next = query(
+                    collection(db, 'Posts'),
+                    orderBy('createdAt', 'desc'),
+                    startAfter(LatestPost),
+                    limit(3)
+                );
+                const documentSnapshots = await getDocs(next);
+                documentSnapshots.docs.forEach((element) => {
+                    setPost((prev: []) => [
+                        ...prev,
+                        JSON.stringify(element.data())
+                    ]);
+                });
+                console.log(LatestPost);
+                setLatestPost(
+                    documentSnapshots.docs[documentSnapshots.size - 1]
+                );
+            };
+
+            fetchPosts();
+        } else {
+            Temp.current = true;
+        }
+
+        return () => {};
+    }, [OffSet]);
+
+    useEffect(() => {
+        const handleScroll = (e: any) => {
+            const scrollHeight = e.target.documentElement.scrollHeight;
+            const currentHeight =
+                e.target.documentElement.scrollTop + window.innerHeight;
+
+            if (currentHeight + 1 >= scrollHeight) {
+                setOffSet((prev) => prev + 5);
+                console.log('Getting more data!');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
-    window.onscroll = (ev) => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-            getPosts('C.C');
-        }
-    };
-
     return (
-        <div>
-            {Temp.map((elem) => (
-                <Posts post={elem[1]} key={elem[0]} PostID={elem[0]}/>
+        <>
+            {Post.map((elem: any) => (
+                <Posts post={elem} />
             ))}
-        </div>
+        </>
     );
 }
-
-export default PostCard;

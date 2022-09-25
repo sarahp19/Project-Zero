@@ -32,7 +32,7 @@ function Chat() {
     return auth ? (
         <div className="m-0 flex flex-col scrollbar justify-center overflow-y-hidden bg-slate-600">
             <div className="ml-[10%]">
-                <NavBar />
+                <NavBar highlight="Chat" />
             </div>
             <>
                 <div className="bg-slate-700 my-12 w-[70%] overflow-x-hidden ml-[15%] rounded-2xl flex">

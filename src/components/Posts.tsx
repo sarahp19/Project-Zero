@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import changeLikes from '../functions/changeLikes';
 import getPosts from '../functions/getPosts';
 import { auth } from './app';
-function Post(props: any) {
-    
+
+function Posts(props: any) {
     const user = auth.currentUser?.uid;
+
+    const  Data = JSON.parse(props.post);
+    // console.log(props.post)
+    // console.log(Data)
 
     return (
         <div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700">
@@ -17,7 +21,7 @@ function Post(props: any) {
                             alt="Neil image"
                         />
                         <h3 className="font-bold tracking-tight text-gray-800 dark:text-white text-xl m-4">
-                            @zero
+                            {Data.UserID}
                         </h3>
                     </div>
                     <button className="inline-flex items-center m-4 justify-center w-10 h-10 float-right ml-auto mr-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
@@ -27,30 +31,39 @@ function Post(props: any) {
                         >
                             <path
                                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                clip-rule="evenodd"
-                                fill-rule="evenodd"
+                                clipRule="evenodd"
+                                fillRule="evenodd"
                             ></path>
                         </svg>
                     </button>
                 </div>
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {props.post.caption}
+                        {Data.caption}
                     </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    by @{props.post.UserID}
-                </p>
+
+                {(Data.description == '') ||
+                (Data.description == undefined) ? (
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {' '}
+                        No description found
+                    </p>
+                ) : (
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {Data}
+                    </p>
+                )}
                 <div className="grid grid-cols-5 p-2">
                     <img
                         className="rounded w-80 col-span-3 col-start-2 shadow-xl mb-3"
-                        src={props.post.content}
+                        src={Data.content}
                         alt=""
                     />
                 </div>
-                <button
+                {/* <button
                     onClick={(e) => {
-                        return changeLikes(props.post, props.PostID, e);
+                        return changeLikes(Data, props.PostID, e);
                     }}
                     className="inline-flex mb-4 items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
                 >
@@ -64,11 +77,11 @@ function Post(props: any) {
                             fill-rule="evenodd"
                         ></path>
                     </svg>
-                    <span>{props.post.likedUsers.includes(user) ? `Liked: ${props.post.Likes}` : `Like: ${props.post.Likes}`}</span>
-                </button>
+                </button> */}
             </div>
         </div>
     );
+    // return <h1>Hello?</h1>
 }
 
-export default Post;
+export default Posts;
