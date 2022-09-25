@@ -30,7 +30,7 @@ function Chat() {
     // console.log(auth.currentUser?.email);
 
     return auth ? (
-        <div className="m-0 flex flex-col scrollbar justify-center overflow-y-hidden bg-slate-600">
+        <div className="m-0 flex flex-col scrollbar justify-center overflow-y-hidden bg-slate-700">
             <div className="ml-[10%]">
                 <NavBar highlight="Chat" />
             </div>
