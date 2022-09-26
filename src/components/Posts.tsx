@@ -24,7 +24,7 @@ function Posts(props: any) {
                             {Data.UserID}
                         </h3>
                     </div>
-                    <button className="inline-flex items-center m-4 justify-center w-10 h-10 float-right ml-auto mr-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
+                    {/* <button className="inline-flex items-center m-4 justify-center w-10 h-10 float-right ml-auto mr-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
                         <svg
                             className="w-4 h-4 fill-current"
                             viewBox="0 0 20 20"
@@ -35,7 +35,7 @@ function Posts(props: any) {
                                 fillRule="evenodd"
                             ></path>
                         </svg>
-                    </button>
+                    </button> */}
                 </div>
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
