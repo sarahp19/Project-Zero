@@ -14,7 +14,15 @@ import Post from './Posts';
 
 function Upload() {
     // const [FirstCoat, setFirstCoat] = useState(false);
-    const [Username, setUsername] = useState<string | null>('');
+    type sometype = {
+        title: string;
+        caption: string;
+        url: string;
+        likedUsers: string[];
+        Likes: number;
+    };
+
+    const [Username, setUsername] = useState('');
     const getUserName = async () => {
         const email = auth.currentUser?.email;
 
@@ -31,7 +39,10 @@ function Upload() {
 
     getUserName();
 
-    const [inputs, setInputs] = useState({ likedUsers: [''], Likes: 0 });
+    const [inputs, setInputs] = useState<sometype>({
+        likedUsers: [''],
+        Likes: 0
+    });
 
     const handleChange = (event: any) => {
         const name = event.target.name;
@@ -110,19 +121,6 @@ function Upload() {
                         onChange={handleChange}
                     />
                 </div>
-                {/* <div className="mb-6">
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                        I genuinely don't know why you exist
-                    </label>
-                    <input
-                        type="url"
-                        name="url"
-                        placeholder="https://"
-                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                        value={inputs.url || ''}
-                        onChange={handleChange}
-                    />
-                </div> */}
                 <input
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="submit"
