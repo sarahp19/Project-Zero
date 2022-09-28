@@ -1,13 +1,12 @@
 import React from 'react';
 import { auth } from './app';
 import PostCard from './PostCard';
-import usePromise from "react-promise"
+import usePromise from 'react-promise';
 
-function UserFeed() {
-    
+function UserFeed(props: any) {
     return (
-        <div className='p-4'>
-            <PostCard />
+        <div className="p-4">
+            <PostCard username={props.User} />
             <br />
         </div>
     );

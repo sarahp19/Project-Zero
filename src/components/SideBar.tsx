@@ -1,39 +1,54 @@
-import React, { useState } from 'react';
+import React, { Profiler, useEffect, useState } from 'react';
 import usePromise from 'react-promise';
 import { auth, db } from '../components/app';
 import UserCard from './UserCard';
-import { doc, collection, getDoc, setDoc } from 'firebase/firestore';
-
-const user = 'ASfEeK6s3UMfD4o0F9kHHyc8TS33';
-const uid = auth.currentUser?.uid;
-let docRef = doc(db, 'Users', user);
-const docSnap = await getDoc(docRef);
+import { doc, collection, getDocs, where, setDoc } from 'firebase/firestore';
+import { query } from '@firebase/firestore';
 
 function SideBar() {
-    if (docSnap.exists()) {
-        console.log("data exists");
-    } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!');
-    }
+    const [Data, setData] = useState<object | undefined>({});
+    const [FirstLoad, setFirstLoad] = useState(true);
+    const user: string | undefined = auth.currentUser?.uid;
+    console.log(user);
+    const getData = async () => {
+        if (user) {
+            const q = query(
+                collection(db, 'Users'),
+                where('email', '==', auth.currentUser?.email)
+            );
+
+            const querySnapshot: any = await getDocs(q);
+            querySnapshot.forEach((doc: any) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, ' => ', doc.data());
+                setData({
+                    Profile: doc.data().profile,
+                    // 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+                    FirstName: doc.data().name,
+                    // UserName: querySnapshot[0].data().username
+                    UserName: doc.id
+                });
+            });
+            //         'https://cdn-icons-png.flaticon.com/512/149/149071.png'
+        }
+    };
+
+    useEffect(() => {
+        if (FirstLoad) {
+            getData();
+        }
+
+        return () => {
+            setFirstLoad(false);
+        };
+    }, [FirstLoad]);
 
     return (
         <div className="hidden md:block">
             <div>
-                <UserCard
-                    Profile={docSnap.data()?.profile}
-                    FirstName={docSnap.data()?.name}
-                    UserName={docSnap.data()?.username}
-                />
+                <UserCard {...Data} />
             </div>
-            <br />
-            <div >
-                <UserCard
-                    Profile="https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg"
-                    FirstName="lmao"
-                    UserName="test"
-                />
-            </div>
+            <hr className="mt-8" />
         </div>
     );
 }

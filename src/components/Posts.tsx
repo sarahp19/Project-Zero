@@ -7,8 +7,6 @@ function Posts(props: any) {
     const user = auth.currentUser?.uid;
 
     const  Data = JSON.parse(props.post);
-    // console.log(props.post)
-    // console.log(Data)
 
     return (
         <div className="w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700">
@@ -24,18 +22,6 @@ function Posts(props: any) {
                             {Data.UserID}
                         </h3>
                     </div>
-                    {/* <button className="inline-flex items-center m-4 justify-center w-10 h-10 float-right ml-auto mr-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
-                        <svg
-                            className="w-4 h-4 fill-current"
-                            viewBox="0 0 20 20"
-                        >
-                            <path
-                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                clipRule="evenodd"
-                                fillRule="evenodd"
-                            ></path>
-                        </svg>
-                    </button> */}
                 </div>
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -61,23 +47,6 @@ function Posts(props: any) {
                         alt=""
                     />
                 </div>
-                {/* <button
-                    onClick={(e) => {
-                        return changeLikes(Data, props.PostID, e);
-                    }}
-                    className="inline-flex mb-4 items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
-                >
-                    <svg
-                        className="w-4 h-4 mr-3 fill-current"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                            clip-rule="evenodd"
-                            fill-rule="evenodd"
-                        ></path>
-                    </svg>
-                </button> */}
             </div>
         </div>
     );

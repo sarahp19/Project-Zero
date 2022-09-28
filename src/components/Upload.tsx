@@ -1,26 +1,36 @@
+import { getDocs, where } from '@firebase/firestore';
 import {
     addDoc,
     collection,
     serverTimestamp,
+    query,
     Timestamp
 } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import urlExist from 'url-exist';
 import { auth, db } from './app';
 import NavBar from './NavBar';
 import Post from './Posts';
 
-function temp() {
-    const user = auth.currentUser?.uid;
-    const data = {
-        user: user,
-        caption: 'cute anime girl',
-        content: 'https://i.redd.it/at35w8r0w3o61.jpg'
-    };
-    handleUpload(user, data);
-}
-
 function Upload() {
+    // const [FirstCoat, setFirstCoat] = useState(false);
+    const [Username, setUsername] = useState<string | null>('');
+    const getUserName = async () => {
+        const email = auth.currentUser?.email;
+
+        const q = query(collection(db, 'Users'), where('email', '==', email));
+
+        const querySnapshot = await getDocs(q);
+        // const uname = querySnapshot[0]?.id;
+        querySnapshot.forEach((doc: any) => {
+            // doc.data() is never undefined for query doc snapshots
+            setUsername(doc.id);
+            // console.log(doc.id);
+        });
+    };
+
+    getUserName();
+
     const [inputs, setInputs] = useState({ likedUsers: [''], Likes: 0 });
 
     const handleChange = (event: any) => {
@@ -47,12 +57,14 @@ function Upload() {
             console.log(inputs);
             const docRef = await addDoc(collection(db, 'Posts'), {
                 Likes: 0,
-                UserID: `${user}`,
+                UserID: `${Username}`,
                 caption: `${inputs.caption}`,
                 content: `${inputs.title}`,
                 createdAt: serverTimestamp()
             });
-            console.log(`${docRef.id} was created bruh`);
+            console.log(`${docRef.id} was created!`);
+            // window.location.replace = '/';
+            alert('Image has been uploaded');
         } else {
             alert('Wrong Details');
             window.location.reload();
@@ -64,17 +76,20 @@ function Upload() {
 
     return (
         <div className="bg-slate-700 font-Poppins w-full h-screen flex flex-col mt-0 items-center">
-            <NavBar highlight="Upload"/>
+            <NavBar highlight="Upload" />
+            <h1 className="text-white text-center text-2xl mt-4">
+                Welcome {Username}
+            </h1>
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col self-center h-full justify-center"
             >
                 <div className="mb-6">
                     <label className="block mb-2 text-sm  font-medium text-gray-900 dark:text-gray-300">
-                        Title
+                        Enter Image Url
                     </label>
                     <input
-                        type="text"
+                        type="url"
                         name="title"
                         placeholder="Title"
                         className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
@@ -84,7 +99,7 @@ function Upload() {
                 </div>
                 <div className="mb-6">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                        Caption
+                        Enter Image Title
                     </label>
                     <input
                         type="text"
@@ -95,9 +110,9 @@ function Upload() {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="mb-6">
+                {/* <div className="mb-6">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                        Enter the Image URL
+                        I genuinely don't know why you exist
                     </label>
                     <input
                         type="url"
@@ -107,7 +122,7 @@ function Upload() {
                         value={inputs.url || ''}
                         onChange={handleChange}
                     />
-                </div>
+                </div> */}
                 <input
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="submit"
@@ -118,9 +133,20 @@ function Upload() {
 }
 
 async function handleUpload(user: string | undefined, data: any) {
+    const q = query(
+        collection(db, 'Users'),
+        where('email', '==', auth.currentUser?.email)
+    );
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, ' => ', doc.data());
+    });
+
     await addDoc(collection(db, 'Posts'), {
         Likes: 0,
-        UserID: data.user,
+        UserID: querySnapshot[0].id,
         caption: data.caption,
         content: data.content,
         createdAt: serverTimestamp()

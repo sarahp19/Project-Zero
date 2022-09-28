@@ -13,7 +13,7 @@ function NavBar(props: any) {
         'block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white';
 
     return (
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 w-11/12 rounded dark:bg-gray-900 mt-2">
+        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 w-11/12 rounded dark:bg-gray-900 ml-[5%] mt-2">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
                 <a
                     href="https://www.mohdmuneeb.live/"
@@ -97,7 +97,7 @@ function NavBar(props: any) {
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="/settings"
                                 className={
                                     props.highlight == 'Settings'
                                         ? Active

@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 import Upload from './components/Upload';
 import Chat from './pages/Chat';
+import Settings from './pages/Settings';
 
 function App() {
     const [user] = useAuthState(auth);
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/" element={user ? <Home /> : <SignIn />} />
                 <Route path="/upload" element={<Upload />} />
                 <Route path="/chat" element={<Chat />} />
+                <Route path="/settings" element={<Settings />} />
             </Routes>
         </BrowserRouter>
     );

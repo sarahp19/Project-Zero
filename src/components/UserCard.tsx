@@ -11,7 +11,7 @@ function UserCard(props: any) {
                 />
             </div>
             <div className="flex-1 w-max">
-                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                <p className="text-l font-medium text-gray-900 truncate dark:text-white">
                     @{props.UserName}
                 </p>
                 <p className="text-sm text-gray-500 truncate dark:text-gray-400">

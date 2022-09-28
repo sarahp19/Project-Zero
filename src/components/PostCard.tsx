@@ -11,7 +11,7 @@ import {
 import { db } from './app';
 import Posts from './Posts';
 
-export default function PostCard() {
+export default function PostCard(props: any) {
     const [Post, setPost] = useState<any | string>([]);
     const [Loading, setLoading] = useState(false);
     const [LatestPost, setLatestPost] = useState<any | null>('');
