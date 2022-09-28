@@ -53,7 +53,7 @@ export default function Messages(props: any) {
             </div>
             <div className="bg-slate-500 h-[90%]">
                 {ActiveTab == '' ? (
-                    <h1>Select something</h1>
+                    <h1></h1>
                 ) : (
                     <div className="bg-slate-500 h-full overflow-hidden">
                         {/* <h1>{ActiveTab}</h1> */}
