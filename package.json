@@ -21,7 +21,9 @@
     "react-icons": "^4.4.0",
     "react-promise": "^3.0.2",
     "react-router-dom": "^6.3.0",
-    "url-exist": "^3.0.1"
+    "url-exist": "^3.0.1",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
