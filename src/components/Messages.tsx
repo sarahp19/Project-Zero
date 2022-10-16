@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { auth } from './app';
+import { useState } from 'react';
 import ChatUsers from './ChatUsers';
 
 export default function Messages(props: any) {

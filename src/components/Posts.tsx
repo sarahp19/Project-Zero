@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import changeLikes from '../functions/changeLikes';
-import getPosts from '../functions/getPosts';
 import { auth } from './app';
 
 function Posts(props: any) {

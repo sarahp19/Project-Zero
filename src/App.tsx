@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './index.css';
 import { auth } from './components/app';

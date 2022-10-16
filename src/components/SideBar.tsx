@@ -1,8 +1,7 @@
-import React, { Profiler, useEffect, useState } from 'react';
-import usePromise from 'react-promise';
+import { useEffect, useState } from 'react';
 import { auth, db } from '../components/app';
 import UserCard from './UserCard';
-import { doc, collection, getDocs, where, setDoc } from 'firebase/firestore';
+import { collection, getDocs, where } from 'firebase/firestore';
 import { query } from '@firebase/firestore';
 
 function SideBar() {
@@ -23,13 +22,10 @@ function SideBar() {
                 console.log(doc.id, ' => ', doc.data());
                 setData({
                     Profile: doc.data().profile,
-                    // 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
                     FirstName: doc.data().name,
-                    // UserName: querySnapshot[0].data().username
                     UserName: doc.id
                 });
             });
-            //         'https://cdn-icons-png.flaticon.com/512/149/149071.png'
         }
     };
 

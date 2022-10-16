@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
     collection,
     query,
     orderBy,
     startAfter,
-    startAt,
     limit,
     getDocs
 } from 'firebase/firestore';
@@ -16,7 +15,6 @@ export default function PostCard(props: any) {
     const [Loading, setLoading] = useState(false);
     const [LatestPost, setLatestPost] = useState<any | null>('');
     const [FirstCoat, setFirstCoat] = useState(true);
-    // const [Temp, setTemp] = useState({});
     const [OffSet, setOffSet] = useState(0);
     const Temp = useRef(false);
 

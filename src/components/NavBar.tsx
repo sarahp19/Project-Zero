@@ -1,10 +1,10 @@
-import React from 'react';
+// import React from 'react';
 import { auth } from '../components/app';
-import SignOut from '../components/SignOut';
-import UserFeed from '../components/UserFeed';
-import { AiOutlineLogout } from 'react-icons/ai';
-import SideBar from '../components/SideBar';
-import Upload from './Upload';
+// import SignOut from '../components/SignOut';
+// import UserFeed from '../components/UserFeed';
+// import { AiOutlineLogout } from 'react-icons/ai';
+// import SideBar from '../components/SideBar';
+// import Upload from './Upload';
 
 function NavBar(props: any) {
     const InActive =
