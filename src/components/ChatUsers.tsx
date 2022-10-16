@@ -246,9 +246,10 @@ export default function ChatUsers(props: any) {
         const messageRef = collection(
             db,
             'Chats',
-            `${props.Effect}`,
+            Category,
             'messages'
         );
+
         await addDoc(messageRef, {
             text: formValue,
             createdAt: serverTimestamp(),
@@ -338,6 +339,7 @@ export default function ChatUsers(props: any) {
 
     return (
         <>
+            {/* <h1>asd{props.CurrentActive} and {props.Effect}</h1> */}
             <main className="h-[80vh] scrollbar overflow-y-scroll flex flex-col-reverse w-full">
                 {Message &&
                     Message.map((msg: any) => (
@@ -345,7 +347,8 @@ export default function ChatUsers(props: any) {
                     ))}
 
                 <span ref={dummy}></span>
-            </main>{' '}
+            </main>
+
             <form
                 onSubmit={sendMessage}
                 className="ml-[15%] mt-4 flex items-center w-[70%] "

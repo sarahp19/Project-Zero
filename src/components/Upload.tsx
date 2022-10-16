@@ -82,6 +82,8 @@ function Upload() {
         }
     };
 
+    console.log(auth.currentUser);
+
     const [Data, setData] = useState({});
     const user = auth.currentUser?.uid;
 
@@ -130,25 +132,25 @@ function Upload() {
     );
 }
 
-async function handleUpload(user: string | undefined, data: any) {
-    const q = query(
-        collection(db, 'Users'),
-        where('email', '==', auth.currentUser?.email)
-    );
+// async function handleUpload(user: string | undefined, data: any, username: string) {
+//     const q = query(
+//         collection(db, 'Users'),
+//         where('email', '==', auth.currentUser?.email)
+//     );
 
-    const querySnapshot: Array<any> = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, ' => ', doc.data());
-    });
+//     const querySnapshot: Array<any | QuerySnapshot> = await getDocs(q);
+//     querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshots
+//         console.log(doc.id, ' => ', doc.data());
+//     });
 
-    await addDoc(collection(db, 'Posts'), {
-        Likes: 0,
-        UserID: querySnapshot[0].id,
-        caption: data.caption,
-        content: data.content,
-        createdAt: serverTimestamp()
-    });
-}
+//     await addDoc(collection(db, 'Posts'), {
+//         Likes: 0,
+//         UserID: querySnapshot[0].id,
+//         caption: data.caption,
+//         content: data.content,
+//         createdAt: serverTimestamp()
+//     });
+// }
 
 export default Upload;
