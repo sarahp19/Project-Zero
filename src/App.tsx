@@ -17,9 +17,15 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={user ? <Home /> : <SignIn />} />
-                <Route path="/upload" element={<Upload />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route
+                    path="/upload"
+                    element={user ? <Upload /> : <SignIn />}
+                />
+                <Route path="/chat" element={user ? <Chat /> : <SignIn />} />
+                <Route
+                    path="/settings"
+                    element={user ? <Settings /> : <SignIn />}
+                />
             </Routes>
         </BrowserRouter>
     );
