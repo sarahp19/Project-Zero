@@ -10,7 +10,7 @@ import SignIn from './SignIn';
 function Chat() {
     const email = auth.currentUser?.email;
     const [ProfilePic, setProfilePic] = useState('');
-    const getImage = async (email: string) => {
+    const getImage = async (email: any) => {
         const userRef = collection(db, 'Users');
         // const snapshot = await getDoc(userRef, where('email', '==', email));
         const q = query(userRef, where('email', '==', email));

@@ -111,7 +111,7 @@ function Footer() {
                             <span className="sr-only">Twitter page</span>
                         </a>
                         <a
-                            href="https://www.github.com/Mohd-Muneeb"
+                            href="https://www.github.com/Mohd-Muneeb/Project-Zero432"
                             className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                         >
                             <svg

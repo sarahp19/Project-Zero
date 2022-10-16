@@ -18,7 +18,7 @@ function Upload() {
         title: string;
         caption: string;
         url: string;
-        likedUsers: string[];
+        likedUsers: Array<string | any>;
         Likes: number;
     };
 
@@ -39,7 +39,7 @@ function Upload() {
 
     getUserName();
 
-    const [inputs, setInputs] = useState<sometype>({
+    const [inputs, setInputs] = useState<sometype | any>({
         likedUsers: [''],
         Likes: 0
     });
@@ -47,7 +47,7 @@ function Upload() {
     const handleChange = (event: any) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs((values) => ({ ...values, [name]: value }));
+        setInputs((values: any) => ({ ...values, [name]: value }));
     };
 
     const handleSubmit = async (event: any) => {
@@ -136,7 +136,7 @@ async function handleUpload(user: string | undefined, data: any) {
         where('email', '==', auth.currentUser?.email)
     );
 
-    const querySnapshot = await getDocs(q);
+    const querySnapshot: Array<any> = await getDocs(q);
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, ' => ', doc.data());
