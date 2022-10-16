@@ -26,9 +26,9 @@ export default function PostCard(props: any) {
         if (FirstCoat) {
             const firstPosts = async () => {
                 const first = query(
-                    collection(db, 'Chats'),
+                    collection(db, 'Posts'),
                     orderBy('createdAt', 'desc'),
-                    limit(10)
+                    limit(3)
                 );
 
                 const documentSnapshots = await getDocs(first);
